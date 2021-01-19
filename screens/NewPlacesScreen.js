@@ -1,13 +1,15 @@
 import React,{useState} from "react"
 import {ScrollView,View,Text,TextInput,Button,StyleSheet} from "react-native"
 import { Colors } from "../settings/Colors";
+import {connect} from "react-redux"
+import { addPlace } from "../store/placesAction";
 
-const NewPlacesScreen = ()=>{
+const NewPlacesScreen = (props)=>{
 
     const [title,setTitle] = useState('')
 
     const savePlaceHandler = ()=>{
-        console.log(title)
+        props.addPlace(title)
     }
     return (
         <ScrollView>
@@ -38,5 +40,9 @@ const styles = StyleSheet.create({
     }
   });
   
-
-export default NewPlacesScreen
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        addPlace:(title)=>dispatch(addPlace(title))
+    }
+}
+export default connect(undefined,mapDispatchToProps)(NewPlacesScreen)
