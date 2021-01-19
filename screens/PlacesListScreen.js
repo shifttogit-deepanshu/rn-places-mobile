@@ -1,9 +1,12 @@
 import React,{useLayoutEffect} from "react"
-import {View,Text,StyleSheet} from "react-native"
+import {FlatList,StyleSheet} from "react-native"
 import IoniconsHeaderButton from "../components/IoniconsHeaderButton"
 import {HeaderButtons,Item} from 'react-navigation-header-buttons';
+import PlaceItem from "../components/PlaceItem";
+import {connect} from "react-redux"
 
 const PlacesListScreen = (props)=>{
+    console.log(props.places)
     useLayoutEffect(()=>{
         props.navigation.setOptions({
             headerRight:()=>(
@@ -14,12 +17,11 @@ const PlacesListScreen = (props)=>{
         })
     })
     return (
-        <View style={styles.container}>
-            <Text>This is PlacesListScreen</Text>
-        </View>
+        <FlatList data={props.places} renderItem={itemData=><PlaceItem image={null} title={itemData.item.title} address={null} onSelect={()=>{
+            props.navigation.navigate("PlaceDetailScreen",{id:itemData.item.id,title:itemData.item.title})
+        }}/>}/>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -29,6 +31,11 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
   });
-  
 
-export default PlacesListScreen
+const mapStateToProps = (state)=>{
+    return {
+        places : state.places
+    }
+}
+
+export default connect(mapStateToProps)(PlacesListScreen)

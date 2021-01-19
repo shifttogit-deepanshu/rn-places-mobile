@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import PlacesListScreen from "../screens/PlacesListScreen"
 import NewPlacesScreen from "../screens/NewPlacesScreen"
+import PlaceDetailScreen from "../screens/PlaceDetailScreen"
 import {Colors} from "../settings/Colors"
 
 const Stack = createStackNavigator()
@@ -23,6 +24,13 @@ const PlacesStackNavigator = ()=>(
             },
             headerTintColor:"white"
         }}/>
+        <Stack.Screen name="PlaceDetailScreen" component={PlaceDetailScreen} options={({route})=>({
+            title:route.params.title,
+            headerStyle:{
+                backgroundColor:Colors.primaryColor
+            },
+            headerTintColor:"white"
+        })}/>
     </Stack.Navigator>
 )
 

@@ -10,6 +10,7 @@ const NewPlacesScreen = (props)=>{
 
     const savePlaceHandler = ()=>{
         props.addPlace(title)
+        props.navigation.goBack()
     }
     return (
         <ScrollView>
