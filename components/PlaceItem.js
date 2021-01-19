@@ -17,7 +17,7 @@ const PlaceItem = props => {
 const styles = StyleSheet.create({
   placeItem: {
     borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     paddingVertical: 15,
     paddingHorizontal: 30,
     flexDirection: 'row',

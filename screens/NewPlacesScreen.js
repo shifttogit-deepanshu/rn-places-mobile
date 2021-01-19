@@ -3,22 +3,29 @@ import {ScrollView,View,Text,TextInput,Button,StyleSheet} from "react-native"
 import { Colors } from "../settings/Colors";
 import {connect} from "react-redux"
 import { addPlace } from "../store/placesAction";
+import ImgPicker from "../components/ImgPicker"
 
 const NewPlacesScreen = (props)=>{
-
+    const [imageUri,setImageUri] = useState()
     const [title,setTitle] = useState('')
 
     const savePlaceHandler = ()=>{
-        props.addPlace(title)
+        props.addPlace(title,imageUri)
         props.navigation.goBack()
+    }
+
+    const addImage = (uri)=>{
+        setImageUri(uri)
     }
     return (
         <ScrollView>
         <View style={styles.form}>
             <Text style={styles.label}>Title</Text>
             <TextInput style={styles.textInput} value={title} onChangeText={val=>setTitle(val)}/>
-            <Button title="Save Place" color={Colors.primaryColor} onPress={savePlaceHandler}/>
+            <ImgPicker addImage={addImage}/>
+            <Button title="Save Place" color={Colors.primaryColor} onPress={savePlaceHandler} style={{marginBottom:20}} />            
         </View>
+        
         </ScrollView>
     )
 }
@@ -43,7 +50,7 @@ const styles = StyleSheet.create({
   
 const mapDispatchToProps = (dispatch)=>{
     return {
-        addPlace:(title)=>dispatch(addPlace(title))
+        addPlace:(title,uri)=>dispatch(addPlace(title,uri))
     }
 }
 export default connect(undefined,mapDispatchToProps)(NewPlacesScreen)

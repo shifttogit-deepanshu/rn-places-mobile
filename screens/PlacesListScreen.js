@@ -17,8 +17,8 @@ const PlacesListScreen = (props)=>{
         })
     })
     return (
-        <FlatList data={props.places} renderItem={itemData=><PlaceItem image={null} title={itemData.item.title} address={null} onSelect={()=>{
-            props.navigation.navigate("PlaceDetailScreen",{id:itemData.item.id,title:itemData.item.title})
+        <FlatList data={props.places} renderItem={itemData=><PlaceItem image={null} title={itemData.item.title} address={null} image={itemData.item.imageUri} onSelect={()=>{
+            props.navigation.navigate("PlaceDetailScreen",{id:itemData.item.id,title:itemData.item.title}) 
         }}/>}/>
     )
 }

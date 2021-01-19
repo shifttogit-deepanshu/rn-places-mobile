@@ -1,9 +1,9 @@
 export const ADD_PLACE = "ADD_PLACE"
 
-const addPlace = (title)=>{
+const addPlace = (title,imageUri)=>{
     return {
         type:ADD_PLACE,
-        placeData:{title:title}
+        placeData:{title:title,imageUri:imageUri}
     }
 }
 
