@@ -1,14 +1,20 @@
-import React, from "react"
+import React,{useState} from "react"
 import {ScrollView,View,Text,TextInput,Button,StyleSheet} from "react-native"
 import { Colors } from "../settings/Colors";
 
 const NewPlacesScreen = ()=>{
+
+    const [title,setTitle] = useState('')
+
+    const savePlaceHandler = ()=>{
+        console.log(title)
+    }
     return (
         <ScrollView>
         <View style={styles.form}>
             <Text style={styles.label}>Title</Text>
-            <TextInput style={styles.textInput}/>
-            <Button title="Save Place" color={Colors.primaryColor}/>
+            <TextInput style={styles.textInput} value={title} onChangeText={val=>setTitle(val)}/>
+            <Button title="Save Place" color={Colors.primaryColor} onPress={savePlaceHandler}/>
         </View>
         </ScrollView>
     )
