@@ -17,7 +17,7 @@ const PlacesStackNavigator = ()=>(
             headerTintColor:"white"
         }}/>
         <Stack.Screen name="NewPlaceScreen" component={NewPlacesScreen} options={{
-            title:"Add Places",
+            title:"Add Place",
             headerStyle:{
                 backgroundColor:Colors.primaryColor
             },
