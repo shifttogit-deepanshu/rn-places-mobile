@@ -2,14 +2,13 @@ import React from 'react';
 import PlacesNavigator from "./navigation/PlacesNavigator"
 import {Provider} from "react-redux"
 import store from "./store/store"
-import {initdb} from "./helper/initdb"
+import {fetchplaces, initdb} from "./helper/initdb"
 
-initdb().then((result)=>{
+
+initdb().then(()=>{
   console.log("database initialized")
-  console.log(result)
 }).catch(err=>{
-  console.log("initialization failed")
-  console.log(err)
+  console.log("initialization failed" + err)
 })
 
 export default function App() {

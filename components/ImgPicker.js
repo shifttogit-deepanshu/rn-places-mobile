@@ -11,7 +11,6 @@ const ImgPicker = (props)=>{
             aspect:[16,9],
             quality:0.7
         })
-        console.log(result)
         if(!result.canceled){
             setImage(result.uri)
         }

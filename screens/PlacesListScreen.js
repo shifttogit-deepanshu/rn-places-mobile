@@ -1,12 +1,15 @@
-import React,{useLayoutEffect} from "react"
+import React,{useLayoutEffect,useEffect} from "react"
 import {FlatList,StyleSheet} from "react-native"
 import IoniconsHeaderButton from "../components/IoniconsHeaderButton"
 import {HeaderButtons,Item} from 'react-navigation-header-buttons';
 import PlaceItem from "../components/PlaceItem";
 import {connect} from "react-redux"
+import { setPlaces } from "../store/placesAction";
 
 const PlacesListScreen = (props)=>{
-    console.log(props.places)
+    useEffect(()=>{
+        props.loadPlaces()
+    },[])
     useLayoutEffect(()=>{
         props.navigation.setOptions({
             headerRight:()=>(
@@ -38,4 +41,10 @@ const mapStateToProps = (state)=>{
     }
 }
 
-export default connect(mapStateToProps)(PlacesListScreen)
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        loadPlaces:()=>dispatch(setPlaces())
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(PlacesListScreen)
