@@ -13,6 +13,7 @@ const addPlace = (title,imageUri)=>{
             from: imageUri,
             to:newPath
         })
+        
     }
     catch (err){
         console.log(err)

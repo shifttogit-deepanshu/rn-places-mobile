@@ -1,9 +1,38 @@
 import * as SQLite from 'expo-sqlite';
 
-const initdb = async ()=>{
-   const db = SQLite.openDatabase("places.db")
+const db = SQLite.openDatabase("places.db")
 
-   db.transaction((tx)=>{
-        tx.executeSql("CREATE TABLE IF NOT EXISTS places (id INTEGER PRIMARY KEY NOT NULL,title TEXT NOT NULL,imageUrl TEXT NOT NULL,address TEXT NOT NULL,lat REAL NOT NULL,lng REAL NOT NULL)",[],)
-   })
+export const initdb = ()=>{
+    const promise = new Promise((resolve,reject)=>{
+        db.transaction((tx)=>{
+            tx.executeSql("CREATE TABLE IF NOT EXISTS places (id INTEGER PRIMARY KEY NOT NULL,title TEXT NOT NULL,imageUri TEXT NOT NULL,address TEXT NOT NULL,lat REAL NOT NULL,lng REAL NOT NULL)",
+            [],
+            (_,status)=>{
+                resolve(status)
+            },
+            (_,err)=>{
+                reject(errp)
+            }   
+            )
+       })
+    })
+return promise
+}
+
+export const insertPlace = (title,imageUri,address,lat,lng)=>{
+    const promise = new Promise((resolve,reject)=>{
+        db.transaction((tx)=>{
+            tx.executeSql("INSERT INTO places (title,imageUri,address,lat,lng) VALUES (?,?,?,?,?)",
+            [title,imageUri,address,lat,,lng],
+            (_,result)=>{
+                resolve(result)
+            },
+            (_,err)=>{
+                reject(errp)
+            }   
+            )
+       })
+    })
+return promise
+
 }
